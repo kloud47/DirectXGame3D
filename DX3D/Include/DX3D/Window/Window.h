@@ -7,6 +7,8 @@ namespace dx3dEngine
 	{
 	public:
 		Window();
+	private:
+		void* m_handle{};
 		virtual ~Window() override;
 	};
 }
