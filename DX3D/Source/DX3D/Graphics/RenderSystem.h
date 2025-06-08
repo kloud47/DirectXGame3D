@@ -8,11 +8,14 @@ namespace dx3dEngine {
 	class RenderSystem final : public Base
 	{
 	public:
-		RenderSystem();
+		explicit RenderSystem(const RenderSystemDesc& desc);
 		virtual ~RenderSystem() override;
 	private:
 		Microsoft::WRL::ComPtr<ID3D11Device> m_d3dDevice{};
 		Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_d3dContext{};
+		Microsoft::WRL::ComPtr<IDXGIDevice> m_dxgiDevice{};
+		Microsoft::WRL::ComPtr<IDXGIAdapter> m_dxgiAdapter{};
+		Microsoft::WRL::ComPtr<IDXGIFactory> m_dxgiFactory{};
 	};
 }
 

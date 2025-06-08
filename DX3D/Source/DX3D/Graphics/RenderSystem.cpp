@@ -1,17 +1,27 @@
 #include "RenderSystem.h"
+#include "GraphicsLogUtils.h"
 
-dx3dEngine::RenderSystem::RenderSystem()
+dx3dEngine::RenderSystem::RenderSystem(const RenderSystemDesc& desc) : Base(desc.base)
 {
 	D3D_FEATURE_LEVEL featureLevel{};
 	UINT createDeviceFlags{};
 #ifdef _DEBUG
 	createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif // _DEBUG
-
-	auto hr = D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, createDeviceFlags, NULL, 0,
-		D3D11_SDK_VERSION, &m_d3dDevice,&featureLevel, &m_d3dContext);
 	
-	if (FAILED(hr)) throw std::runtime_error("Direct3D11 initialization failed.");
+	DX3DGraphicsLogErrorAndThrow(D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, createDeviceFlags,
+		nullptr, 0, D3D11_SDK_VERSION,
+		&m_d3dDevice, &featureLevel, &m_d3dContext), 
+		"Direct3D11 initialization failed.");
+
+	DX3DGraphicsLogErrorAndThrow(m_d3dDevice->QueryInterface(IID_PPV_ARGS(&m_dxgiDevice)), 
+		"QueryInterface failed to retrieve IDXGIDevice.");
+
+	DX3DGraphicsLogErrorAndThrow(m_dxgiDevice->GetParent(IID_PPV_ARGS(&m_dxgiAdapter)),
+		"GetParent failed to retrieve IDXGIAdapter.");
+
+	DX3DGraphicsLogErrorAndThrow(m_dxgiAdapter->GetParent(IID_PPV_ARGS(&m_dxgiFactory)),
+		"GetParent failed to retrieve IDXGIFactory.");
 }
 
 dx3dEngine::RenderSystem::~RenderSystem()

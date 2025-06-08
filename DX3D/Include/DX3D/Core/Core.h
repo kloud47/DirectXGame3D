@@ -14,4 +14,10 @@ namespace dx3dEngine
 	class GraphicsEngine;
 
 	class Logger;
+
+	using i32 = int;
+	using ui32 = unsigned int;
+	using f32 = float;
+	using d64 = double;
+
 }

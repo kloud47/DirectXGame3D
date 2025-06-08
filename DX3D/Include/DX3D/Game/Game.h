@@ -7,7 +7,7 @@ namespace dx3dEngine
 	class Game : public Base
 	{
 	public:
-		Game();
+		Game(const GameDesc& desc);
 		virtual ~Game() override;
 
 		virtual void run() final;
