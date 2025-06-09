@@ -7,6 +7,8 @@ namespace dx3dEngine {
 	public:
 		// SwapChainDesc pass winHandle, winSize
 		SwapChain(const SwapChainDesc& desc, const GraphicsResourceDesc& gDesc);
+	private:
+		Microsoft::WRL::ComPtr<IDXGISwapChain> m_swapChain;
 	};
 }
 

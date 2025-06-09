@@ -16,7 +16,7 @@ static LRESULT CALLBACK WindowProcedure(HWND hwnd, UINT msg, WPARAM wparam, LPAR
 	return 0;
 }
 
-dx3dEngine::Window::Window(const WindowDesc& desc) : Base(desc.base)
+dx3dEngine::Window::Window(const WindowDesc& desc) : Base(desc.base), m_size(desc.size)
 {
 	auto registerWindowClassFunction = []() // modern C++ way to make code self contained:
 		{
@@ -32,7 +32,7 @@ dx3dEngine::Window::Window(const WindowDesc& desc) : Base(desc.base)
 
 	if (!windowClassId) DX3DLogErrorAndThrow("RegisterCLassEx failed.");
 		
-	RECT rc{0, 0, 1280, 720};
+	RECT rc{0, 0, m_size.width, m_size.height};
 	AdjustWindowRect(&rc, WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU, false);
 
 	m_handle = CreateWindowEx(NULL, MAKEINTATOM(windowClassId), L"Kloud47 | C++ 3D Game from Scratch",

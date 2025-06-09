@@ -1,6 +1,6 @@
 #pragma once  
-#include <DX3D/Core/Base.h>  
-#include <DX3D/Core/Common.h>
+#include <DX3D/Core/Base.h>
+
 
 namespace dx3dEngine  
 {  
@@ -9,7 +9,8 @@ namespace dx3dEngine
 	public:  
 		explicit Window(const WindowDesc& desc);
 		virtual ~Window() override;  
-	private:  
+	protected:  
 		void* m_handle{};  
+		Rect m_size{};
 	};  
 }
