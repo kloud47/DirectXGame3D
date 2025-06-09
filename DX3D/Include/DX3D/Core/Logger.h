@@ -12,7 +12,16 @@ namespace dx3dEngine {
 		};
 		// Rule of Zero:
 		explicit Logger(LogLevel logLevel = LogLevel::Error); // Default Error
+		~Logger();
+
 		void log(LogLevel level, const char* message) const;
+
+	protected:
+		Logger(const Logger&) = delete;
+		Logger(Logger&&) = delete;
+		Logger& operator = (const Logger&) = delete;
+		Logger& operator = (Logger&&) = delete;
+
 	private:
 		LogLevel m_logLevel = LogLevel::Error;
 	};

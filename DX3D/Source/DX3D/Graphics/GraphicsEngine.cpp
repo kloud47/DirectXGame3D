@@ -1,9 +1,13 @@
-#include "DX3D/Graphics/GraphicsEngine.h"
-#include "DX3D/Graphics/RenderSystem.h"
+#include <DX3D/Graphics/GraphicsEngine.h>
+#include <DX3D/Graphics/GraphicsDevice.h>
+#include <DX3D/Graphics/DeviceContext.h>
 
 dx3dEngine::GraphicsEngine::GraphicsEngine(const GraphicsEngineDesc& desc) : Base(desc.base)
 {
-	m_renderSystem = std::make_shared<RenderSystem>(RenderSystemDesc{m_logger});
+	m_graphicsDevice = std::make_shared<GraphicsDevice>(GraphicsDeviceDesc{m_logger});
+
+	auto& device = *m_graphicsDevice;
+	m_deviceContext = device.createDeviceContext();// Created the deffered device Context:
 
 	DX3DLogInfo("GraphicsEngine Initialized.");
 }
@@ -12,7 +16,12 @@ dx3dEngine::GraphicsEngine::~GraphicsEngine()
 {
 }
 
-dx3dEngine::RenderSystem& dx3dEngine::GraphicsEngine::getRenderSystem() const noexcept
+dx3dEngine::GraphicsDevice& dx3dEngine::GraphicsEngine::getGraphicsDevice() const noexcept
 {
-	return *m_renderSystem;
+	return *m_graphicsDevice;
+}
+
+void dx3dEngine::GraphicsEngine::render()
+{
+	*m_deviceContext.clea
 }

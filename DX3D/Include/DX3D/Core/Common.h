@@ -18,14 +18,14 @@ namespace dx3dEngine
 
 	struct DisplayDesc {
 		WindowDesc window;
-		RenderSystem& renderSystem;
+		GraphicsDevice& GraphicsDevice;
 	};
 
 	struct GraphicsEngineDesc {
 		BaseDesc base;
 	};
 
-	struct RenderSystemDesc {
+	struct GraphicsDeviceDesc {
 		BaseDesc base;
 	};
 

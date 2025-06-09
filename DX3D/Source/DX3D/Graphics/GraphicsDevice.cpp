@@ -1,8 +1,9 @@
-#include "RenderSystem.h"
-#include "GraphicsLogUtils.h"
-#include "SwapChain.h"
+#include "DX3D/Graphics/GraphicsDevice.h"
+#include "DX3D/Graphics/GraphicsLogUtils.h"
+#include "DX3D/Graphics/SwapChain.h"
+#include <DX3D/Graphics/DeviceContext.h>
 
-dx3dEngine::RenderSystem::RenderSystem(const RenderSystemDesc& desc) : Base(desc.base)
+dx3dEngine::GraphicsDevice::GraphicsDevice(const GraphicsDeviceDesc& desc) : Base(desc.base)
 {
 	D3D_FEATURE_LEVEL featureLevel{};
 	UINT createDeviceFlags{};
@@ -26,16 +27,21 @@ dx3dEngine::RenderSystem::RenderSystem(const RenderSystemDesc& desc) : Base(desc
 		"GetParent failed to retrieve IDXGIFactory.");
 }
 
-dx3dEngine::RenderSystem::~RenderSystem()
+dx3dEngine::GraphicsDevice::~GraphicsDevice()
 {
 }
 
-dx3dEngine::SwapChainPtr dx3dEngine::RenderSystem::createSwapChain(const SwapChainDesc& desc) const
+dx3dEngine::SwapChainPtr dx3dEngine::GraphicsDevice::createSwapChain(const SwapChainDesc& desc) const
 {
-	return std::make_shared<SwapChain>(desc, getGraphicsResourse());
+	return std::make_shared<SwapChain>(desc, getGraphicsResourseDesc());
 }
 
-dx3dEngine::GraphicsResourceDesc dx3dEngine::RenderSystem::getGraphicsResourse() const noexcept
+dx3dEngine::DeviceContextPtr dx3dEngine::GraphicsDevice::createDeviceContext()
+{
+	return std::make_shared<DeviceContext>(getGraphicsResourseDesc());
+}
+
+dx3dEngine::GraphicsResourceDesc dx3dEngine::GraphicsDevice::getGraphicsResourseDesc() const noexcept
 {
 	return GraphicsResourceDesc({m_logger}, shared_from_this(), *m_d3dDevice.Get(), *m_dxgiFactory.Get()); // .Get() returns pointer to Microsoft::WRL
 }

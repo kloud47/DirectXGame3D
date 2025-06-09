@@ -1,4 +1,4 @@
-#include "SwapChain.h"
+#include "DX3D/Graphics/SwapChain.h"
 
 dx3dEngine::SwapChain::SwapChain(const SwapChainDesc& desc, const GraphicsResourceDesc& gDesc) :
 	GraphicsResource(gDesc)

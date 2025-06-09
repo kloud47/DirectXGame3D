@@ -7,6 +7,10 @@ dx3dEngine::Logger::Logger(LogLevel logLevel) : m_logLevel(logLevel)
 	std::clog << "--------------------------------------" << "\n";
 }
 
+dx3dEngine::Logger::~Logger()
+{
+}
+
 void dx3dEngine::Logger::log(LogLevel level, const char* message) const
 {
 	auto loglevelToString = [](LogLevel level) { // Lambda function to convert enum to string
