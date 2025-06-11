@@ -8,7 +8,7 @@ namespace dx3dEngine
 	public:
 		Base(const BaseDesc& desc); // Constructor Injection:
 		virtual ~Base();
-		virtual Logger& getLogger() const noexcept final;
+		virtual Logger& getLogger() noexcept final;
 
 		// The Rule of 5:
 	protected:// to make the class and its derivatives non-copyable and non-movable.

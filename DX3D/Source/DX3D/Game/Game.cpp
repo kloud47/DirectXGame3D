@@ -18,3 +18,9 @@ dx3dEngine::Game::~Game()
 {
 	DX3DLogInfo("Game is shutting down...");
 }
+
+void dx3dEngine::Game::OnInternalUpdate()
+{
+
+	m_graphicsEngine->render(m_display->getSwapChain());
+}

@@ -2,6 +2,7 @@
 #include <DX3D/Core/Core.h>
 #include <DX3D/Core/Logger.h>
 #include <DX3D/Math/Rect.h>
+#include <DX3D/Math/Vec4.h>
 
 // Used to define the structure of various descriptors used in the engine.
 // These are used for dpendency injection and configuration of different components in the DX3D engine.

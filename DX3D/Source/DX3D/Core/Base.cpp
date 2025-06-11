@@ -9,7 +9,7 @@ dx3dEngine::Base::~Base()
 {
 }
 
-dx3dEngine::Logger& dx3dEngine::Base::getLogger() const noexcept
+dx3dEngine::Logger& dx3dEngine::Base::getLogger() noexcept
 {
 	return m_logger;
 }

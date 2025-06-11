@@ -7,8 +7,15 @@ namespace dx3dEngine {
 	public:
 		// SwapChainDesc pass winHandle, winSize
 		SwapChain(const SwapChainDesc& desc, const GraphicsResourceDesc& gDesc);
+
+		void present(bool vsync = false);
+	private:
+		void reloadBuffer();
 	private:
 		Microsoft::WRL::ComPtr<IDXGISwapChain> m_swapChain;
+		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_rtv{};
+
+		friend class DeviceContext;
 	};
 }
 

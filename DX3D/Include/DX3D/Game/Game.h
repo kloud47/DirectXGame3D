@@ -12,6 +12,9 @@ namespace dx3dEngine
 
 		virtual void run() final;
 	private:
+		void OnInternalUpdate();
+
+	private:
 		// Order Matters here: during deallocation:
 		std::unique_ptr<Logger> m_loggerPtr{};
 		std::unique_ptr<GraphicsEngine> m_graphicsEngine{};

@@ -14,7 +14,7 @@ namespace dx3dEngine {
 		explicit Logger(LogLevel logLevel = LogLevel::Error); // Default Error
 		~Logger();
 
-		void log(LogLevel level, const char* message) const;
+		void log(LogLevel level, const char* message);
 
 	protected:
 		Logger(const Logger&) = delete;

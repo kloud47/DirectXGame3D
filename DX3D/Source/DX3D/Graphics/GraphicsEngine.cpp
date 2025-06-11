@@ -1,6 +1,7 @@
 #include <DX3D/Graphics/GraphicsEngine.h>
 #include <DX3D/Graphics/GraphicsDevice.h>
 #include <DX3D/Graphics/DeviceContext.h>
+#include <DX3D/Graphics/SwapChain.h>
 
 dx3dEngine::GraphicsEngine::GraphicsEngine(const GraphicsEngineDesc& desc) : Base(desc.base)
 {
@@ -16,12 +17,18 @@ dx3dEngine::GraphicsEngine::~GraphicsEngine()
 {
 }
 
-dx3dEngine::GraphicsDevice& dx3dEngine::GraphicsEngine::getGraphicsDevice() const noexcept
+dx3dEngine::GraphicsDevice& dx3dEngine::GraphicsEngine::getGraphicsDevice() noexcept
 {
 	return *m_graphicsDevice;
 }
 
-void dx3dEngine::GraphicsEngine::render()
+void dx3dEngine::GraphicsEngine::render(SwapChain& swapChain)
 {
-	*m_deviceContext.clea
+	auto& context = *m_deviceContext;
+	context.clearAndSetBackBuffer(swapChain, { 1,0,0,1 });
+
+	auto& device = *m_graphicsDevice;
+	device.executeCommandList(context);
+
+	swapChain.present();
 }

@@ -11,7 +11,7 @@ dx3dEngine::Logger::~Logger()
 {
 }
 
-void dx3dEngine::Logger::log(LogLevel level, const char* message) const
+void dx3dEngine::Logger::log(LogLevel level, const char* message)
 {
 	auto loglevelToString = [](LogLevel level) { // Lambda function to convert enum to string
 		switch (level)

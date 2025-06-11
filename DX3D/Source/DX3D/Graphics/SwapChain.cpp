@@ -19,6 +19,22 @@ dx3dEngine::SwapChain::SwapChain(const SwapChainDesc& desc, const GraphicsResour
 	dxgiDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 	dxgiDesc.Windowed = true;
 
-
 	DX3DGraphicsLogErrorAndThrow(m_factory.CreateSwapChain(&m_device, &dxgiDesc, &m_swapChain), "CreateSwapChain failed.")
+
+		reloadBuffer(); // to ensure that we have the render target view of the back buffer ready
 }
+
+void dx3dEngine::SwapChain::present(bool vsync)
+{
+	DX3DGraphicsLogErrorAndThrow(m_swapChain->Present(vsync, 0), "Present failed.");
+}
+
+void dx3dEngine::SwapChain::reloadBuffer()
+{
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> buffer{};
+	DX3DGraphicsLogErrorAndThrow(m_swapChain->GetBuffer(0, IID_PPV_ARGS(&buffer)),
+		"GetBuffer Failed");
+
+	DX3DGraphicsLogErrorAndThrow(m_device.CreateRenderTargetView(buffer.Get(), nullptr, &m_rtv),
+		"CreateRenderTargetView failed.");
+}	

@@ -43,8 +43,6 @@ dx3dEngine::Window::Window(const WindowDesc& desc) : Base(desc.base), m_size(des
 	if (!m_handle) DX3DLogErrorAndThrow("CreateWindowEx failed.");
 
     ShowWindow(static_cast<HWND>(m_handle), SW_SHOW);
-
-	m_logger.log(Logger::LogLevel::Info, "Window Initialized.");
 }
 
 dx3dEngine::Window::~Window()

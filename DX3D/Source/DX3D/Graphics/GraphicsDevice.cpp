@@ -41,6 +41,14 @@ dx3dEngine::DeviceContextPtr dx3dEngine::GraphicsDevice::createDeviceContext()
 	return std::make_shared<DeviceContext>(getGraphicsResourseDesc());
 }
 
+void dx3dEngine::GraphicsDevice::executeCommandList(DeviceContext& context)
+{
+	Microsoft::WRL::ComPtr<ID3D11CommandList> list{};
+	DX3DGraphicsLogErrorAndThrow(context.m_context->FinishCommandList(false, &list),
+		"FinishedCommandList failed.");
+	m_d3dContext->ExecuteCommandList(list.Get(), false);
+}
+
 dx3dEngine::GraphicsResourceDesc dx3dEngine::GraphicsDevice::getGraphicsResourseDesc() const noexcept
 {
 	return GraphicsResourceDesc({m_logger}, shared_from_this(), *m_d3dDevice.Get(), *m_dxgiFactory.Get()); // .Get() returns pointer to Microsoft::WRL
