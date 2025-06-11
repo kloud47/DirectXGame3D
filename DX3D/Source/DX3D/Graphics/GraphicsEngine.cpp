@@ -22,7 +22,7 @@ dx3dEngine::GraphicsDevice& dx3dEngine::GraphicsEngine::getGraphicsDevice() noex
 	return *m_graphicsDevice;
 }
 
-void dx3dEngine::GraphicsEngine::render(SwapChain& swapChain)
+void dx3dEngine::GraphicsEngine::render(SwapChain& swapChain)// render in the game run loop:
 {
 	auto& context = *m_deviceContext;
 	context.clearAndSetBackBuffer(swapChain, { 1,0,0,1 });

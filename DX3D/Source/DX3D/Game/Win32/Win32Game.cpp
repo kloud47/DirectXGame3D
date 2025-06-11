@@ -16,6 +16,7 @@ void dx3dEngine::Game::run()
 			TranslateMessage(&msg);// Translate virtual key messages into character messages
 			DispatchMessageW(&msg);// Dispatch the message to the window procedure
 		} 
-		OnInternalUpdate(); // Sleep to avoid busy waiting // It happens once per "frame" or "tick" of your main game loop
+		/*Sleep(1);*/ // Sleep to avoid busy waiting // It happens once per "frame" or "tick" of your main game loop
+		OnInternalUpdate(); 
 	}
 }

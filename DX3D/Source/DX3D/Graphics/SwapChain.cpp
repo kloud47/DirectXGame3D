@@ -21,7 +21,7 @@ dx3dEngine::SwapChain::SwapChain(const SwapChainDesc& desc, const GraphicsResour
 
 	DX3DGraphicsLogErrorAndThrow(m_factory.CreateSwapChain(&m_device, &dxgiDesc, &m_swapChain), "CreateSwapChain failed.")
 
-		reloadBuffer(); // to ensure that we have the render target view of the back buffer ready
+	reloadBuffer(); // to ensure that we have the render target view of the back buffer ready
 }
 
 void dx3dEngine::SwapChain::present(bool vsync)

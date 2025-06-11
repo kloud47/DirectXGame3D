@@ -11,6 +11,6 @@ void dx3dEngine::DeviceContext::clearAndSetBackBuffer(const SwapChain& swapChain
 {
 	f32 fColor[] = { color.x, color.y, color.z, color.w };
 	auto rtv = swapChain.m_rtv.Get();
-	m_context->ClearRenderTargetView(rtv, fColor);
+	m_context->ClearRenderTargetView(rtv, fColor); // clears a render target view to a specified color:
 	m_context->OMSetRenderTargets(1, &rtv, nullptr);
 }

@@ -21,6 +21,5 @@ dx3dEngine::Game::~Game()
 
 void dx3dEngine::Game::OnInternalUpdate()
 {
-
 	m_graphicsEngine->render(m_display->getSwapChain());
 }
