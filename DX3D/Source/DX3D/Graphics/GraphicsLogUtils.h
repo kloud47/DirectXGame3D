@@ -3,6 +3,8 @@
 
 namespace dx3dEngine
 {
+}
+
 #define DX3DGraphicsLogErrorAndThrow(hr, message) \
 	{\
 		auto res = (hr);\
@@ -11,4 +13,3 @@ namespace dx3dEngine
 				DX3DLogErrorAndThrow(message); \
 		}\
 	}
-}
