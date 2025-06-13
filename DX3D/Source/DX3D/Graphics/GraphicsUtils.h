@@ -10,7 +10,7 @@ namespace dx3dEngine
 		{
 			switch (type)
 			{
-			case ShaderType::VertexShader: return "v5_5_0";
+			case ShaderType::VertexShader: return "vs_5_0";
 			case ShaderType::PixelShader: return "ps_5_0";
 			default: return "";
 			}

@@ -41,6 +41,12 @@ namespace dx3dEngine
 		PixelShader
 	};
 
+	struct ShaderBinaryData
+	{
+		const void* data{};
+		size_t dataSize{};
+	};
+
 	struct ShaderCompileDesc
 	{
 		const char* shaderSourceName{};
@@ -50,6 +56,18 @@ namespace dx3dEngine
 		ShaderType shaderType{};
 	};
 
+	struct GraphicsPipelineStateDesc
+	{
+		const ShaderBinary& vs;
+		const ShaderBinary& ps;
+	};
+
+	struct VertexBufferDesc // stores array of vertex Attributes:
+	{
+		const void* vertexList{};
+		ui32 vertexListSize{};
+		ui32 vertexSize{};
+	};
 
 	struct GameDesc {
 		Rect WindowSize{ 1280, 720 };

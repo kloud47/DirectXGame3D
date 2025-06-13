@@ -1,8 +1,9 @@
 #include "DX3D/Graphics/SwapChain.h"
 
 dx3dEngine::SwapChain::SwapChain(const SwapChainDesc& desc, const GraphicsResourceDesc& gDesc) :
-	GraphicsResource(gDesc)
+	GraphicsResource(gDesc), m_size(desc.winSize)
 {
+	if (!desc.winHandle) DX3DLogThrowInvalidArg("No window handle provided.");
 	// Swap Chain Description:
 	DXGI_SWAP_CHAIN_DESC dxgiDesc{};
 
@@ -22,6 +23,11 @@ dx3dEngine::SwapChain::SwapChain(const SwapChainDesc& desc, const GraphicsResour
 	DX3DGraphicsLogErrorAndThrow(m_factory.CreateSwapChain(&m_device, &dxgiDesc, &m_swapChain), "CreateSwapChain failed.")
 
 	reloadBuffer(); // to ensure that we have the render target view of the back buffer ready
+}
+
+dx3dEngine::Rect dx3dEngine::SwapChain::getSize() const noexcept
+{
+	return m_size;
 }
 
 void dx3dEngine::SwapChain::present(bool vsync)

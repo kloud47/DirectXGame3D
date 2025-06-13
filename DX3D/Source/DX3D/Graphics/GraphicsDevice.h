@@ -6,6 +6,7 @@
 #include <wrl.h>
 
 namespace dx3dEngine {
+	// Factory Class that creates all the Graphics resources:
 	class GraphicsDevice final : public Base, public std::enable_shared_from_this<GraphicsDevice>
 	{
 	public:
@@ -14,6 +15,9 @@ namespace dx3dEngine {
 
 		SwapChainPtr createSwapChain(const SwapChainDesc& desc) const;
 		DeviceContextPtr createDeviceContext();
+		ShaderBinaryPtr compileShader(const ShaderCompileDesc& desc);
+		GraphicsPipelineStatePtr createGraphicsPipelineState(const GraphicsPipelineStateDesc& desc);
+		VertexBufferPtr createVertexBuffer(const VertexBufferDesc& desc);
 
 		void executeCommandList(DeviceContext& context);
 	private:
